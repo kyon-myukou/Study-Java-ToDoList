@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+        <title>TodoList</title>
+        <style>
+            h1 {font-size: 2rem; border-bottom: solid 3px #4caf93;}
+            h2 {font-size: 1.6rem; border-bottom: solid 1px #4caf93;}
+            p {padding-left: 30px;}
+            table {padding-left: 30px; border-spacing: 0;}
+            table th {background-color: rgba(76, 175, 147, 0.175);}
+            table th, td {padding: 5px;}
+        </style>
+    </head>
+    <body>
+        <p>
+            <a th:href="@{/todolist}">TodoList</a>
+            <a th:href="@{/search}">Search</a>
+            <a th:href="@{/edit}">Edit</a>
+        </p>
+        <h1>TodoList</h1>
+        <table>
+            <tr th:each="data:${data}" th:if="*{data.state} eq false">
+                <td th:text="*{data.comment}"></td>
+                <td>
+                    <form method="post" th:action="@{/done}">
+                        <input type="hidden" name="id" th:value="*{data.id}" />
+                        <input type="submit" value="done"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <form method="post" th:action="@{/new}">
+            <input type="text" name="comment"/>
+            <input type="submit" value="Add"/>
+        </form>
+    </body>
+</html>
