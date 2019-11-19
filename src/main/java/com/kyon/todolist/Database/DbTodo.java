@@ -1,4 +1,4 @@
-package com.kyon.todolist;
+package com.kyon.todolist.Database;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

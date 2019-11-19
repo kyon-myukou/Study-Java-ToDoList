@@ -19,5 +19,19 @@
             <a th:href="@{/edit}">Edit</a>
         </p>
         <h1>SearchList</h1>
+        <form method="post" th:action="@{/search}">
+            <input type="text"  name="input">
+            <input type="submit" value="Search"/>
+            <table>
+                <tr th:each="data:${data}" th:if="*{data.state} eq false">
+                    <td>undone</td>
+                    <td th:text="*{data.comment}"></td>
+                </tr>
+                <tr th:each="data:${data}" th:if="*{data.state} eq true">
+                    <td>done</td>
+                    <td th:text="*{data.comment}"></td>
+                </tr>
+            </table>
+        </form>
     </body>
 </html>
