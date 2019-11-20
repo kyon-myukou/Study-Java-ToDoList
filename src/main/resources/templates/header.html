@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<body>
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <header th:fragment="header">
+            <p>
+                <a th:href="@{/todolist}">TodoList</a>
+                <a th:href="@{/search}">Search</a>
+                <a th:href="@{/edit}">Edit</a>
+            </p>
+        </header>
+    </body>
 </html>

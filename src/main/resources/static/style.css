@@ -1,6 +1,11 @@
+@charset "UTF-8";
 h1 {font-size: 2rem; border-bottom: solid 3px #4caf93;}
 h2 {font-size: 1.6rem; border-bottom: solid 1px #4caf93;}
 p {padding-left: 30px;}
 table {padding-left: 30px; border-spacing: 0;}
 table th {background-color: rgba(76, 175, 147, 0.175);}
 table th, td {padding: 5px;}
+a {text-decoration: none; padding-right: 30px; color: #4caf93; font-size: 1.2rem;}
+input{color: #4caf93;}
+input.done {background: #4caf93; color: white; border-style: none;  border-radius: 25px;}
+input.undone {background: white; border-style: none;  border-radius: 25px; border: solid 1px #4caf93;}

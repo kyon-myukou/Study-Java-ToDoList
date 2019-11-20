@@ -23,9 +23,9 @@ public class SearchListController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public ModelAndView search(@ModelAttribute("input") String input){
+    public ModelAndView search(@ModelAttribute("keyword") String keyword){
         ModelAndView mav = new ModelAndView();
-        List<DbTodo> list = repository.findComment(input);
+        List<DbTodo> list = repository.findComment(keyword);
         mav.addObject("data", list);
         return mav;
     }
