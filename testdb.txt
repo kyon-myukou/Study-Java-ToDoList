@@ -1,0 +1,7 @@
+testdb
+create table todos(id int primary key auto_increment, comment varchar(64), state boolean);
+
+inU^^Neko1122
+
+select * from todos;
+insert into todos (comment, state) values ('kenkyu', false), ('kadai', true);
