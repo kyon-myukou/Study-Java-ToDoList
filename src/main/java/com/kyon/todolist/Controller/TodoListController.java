@@ -1,7 +1,7 @@
 package com.kyon.todolist.Controller;
 
-import com.kyon.todolist.DbRepository;
-import com.kyon.todolist.DbTodo;
+import com.kyon.todolist.Database.DbRepository;
+import com.kyon.todolist.Database.DbTodo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class ThymeleafController {
+public class TodoListController {
     @Autowired
     DbRepository repository;
 
@@ -34,15 +34,5 @@ public class ThymeleafController {
         data.setState(true);
         this.repository.save(data);
         return "redirect:/todolist";
-    }
-
-    @RequestMapping("/search")
-    public String search(Model model){
-        return "search";
-    }
-
-    @RequestMapping("/edit")
-    public String edit(Model model){
-        return "edit";
     }
 }
