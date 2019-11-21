@@ -1,19 +1,19 @@
-#TodoList
+# TodoList
 
-##動作環境
+## 動作環境
 * macOS Catalina ver 10.15.1 
 * intelliJ IDEA ver 2019.2.4 
 * Java 1.8.0_151 
 * Gradle 5.6.4
 * Spring Boot 2.2.1
 
-##使用技術
+## 使用技術
 * Spring Boot DevTools
 * Thymeleaf
 * Spring Data JPA
 * MySQL Driver
 
-##構成
+## 構成
 
 ```
 .
@@ -50,7 +50,7 @@
 * 動的View 
 /resources/templates
  
-##設計
+## 設計
 * ヘッダー  
 ロゴ及びトップ画面へのリンクと検索へのリンク
 * トップ画面  
@@ -64,7 +64,7 @@ todoの期限変更
 todoの部分一致検索
 未完了のtodoの表示、状態変更、編集へのリンク
 
-##開発環境のセットアップ
+## 開発環境のセットアップ
 
 * リポジトリをクローン
 * プロジェクトをビルド
