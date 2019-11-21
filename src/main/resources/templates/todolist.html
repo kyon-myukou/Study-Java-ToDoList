@@ -6,9 +6,9 @@
     </head>
     <body>
         <div th:replace="header :: header"></div>
-        <h1>TodoList</h1>
         <table>
             <tr th:each="data:${data}" th:if="*{data.state} eq false">
+                <th th:text="*{data.deadlineDt}"></th>
                 <td th:text="*{data.comment}"></td>
                 <td>
                     <form method="post" th:action="@{/done}">
@@ -16,10 +16,18 @@
                         <input type="submit" value="done" class="done"/>
                     </form>
                 </td>
+                <td>
+                    <form method="post" action="./edit.html" th:action="@{/edit}">
+                        <input type="hidden" name="id" th:value="*{data.id}"/>
+                        <input type="submit" value="edit" class="undone"/>
+                    </form>
+                </td>
+                <td th:text="*{data.creationDt}"></td>
             </tr>
         </table>
         <form method="post" th:action="@{/new}">
-            <input type="text" name="comment"/>
+            <input type="text" name="comment" placeholder="todo"/>
+            <input type="date" name="deadlineDt" placeholder="date"/>
             <input type="submit" value="Add"/>
         </form>
     </body>

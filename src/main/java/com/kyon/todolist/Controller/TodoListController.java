@@ -3,11 +3,13 @@ package com.kyon.todolist.Controller;
 import com.kyon.todolist.Database.DbRepository;
 import com.kyon.todolist.Database.DbTodo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.sql.Date;
 
 @Controller
 public class TodoListController {
@@ -16,7 +18,7 @@ public class TodoListController {
 
     @RequestMapping("/todolist")
     public String todolist(Model model){
-        Iterable<DbTodo> list = repository.findAll();
+        Iterable<DbTodo> list = repository.findAll(Sort.by(Sort.Direction.ASC, "deadlineDt"));
         model.addAttribute("data", list);
         return "todolist";
     }
@@ -24,8 +26,9 @@ public class TodoListController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String add(DbTodo data) {
         data.setState(false);
+        data.setCreationDt(new Date(System.currentTimeMillis()));
         this.repository.save(data);
-        return "redirect:/todolist";
+        return "forward:/todolist";
     }
 
     @RequestMapping(value = "/done", method = RequestMethod.POST)
@@ -33,6 +36,6 @@ public class TodoListController {
         DbTodo data = this.repository.getOne(id);
         data.setState(true);
         this.repository.save(data);
-        return "redirect:/todolist";
+        return "forward:/todolist";
     }
 }

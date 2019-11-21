@@ -3,9 +3,10 @@
     <body>
         <header th:fragment="header">
             <p>
-                <a th:href="@{/todolist}">TodoList</a>
-                <a th:href="@{/search}">Search</a>
-                <a th:href="@{/edit}">Edit</a>
+                <h1>
+                    <a th:href="@{/todolist}">Todolist</a>
+                    <a th:href="@{/search}" class="search">Search</a>
+                </h1>
             </p>
         </header>
     </body>
