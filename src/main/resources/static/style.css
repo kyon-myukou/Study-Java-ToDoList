@@ -1,6 +1,7 @@
 @charset "UTF-8";
 h1 {font-size: 2rem; border-bottom: solid 3px #4caf93;}
 h2 {font-size: 1.6rem; border-bottom: solid 1px #4caf93;}
+h3 {font-size: 1.2rem; margin-left: 30px;}
 p {padding-left: 30px;}
 table {padding-left: 30px; padding-top: 10px; padding-bottom: 10px; border-spacing: 0;}
 table th {background-color: rgba(76, 175, 147, 0.175);}

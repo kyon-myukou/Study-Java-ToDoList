@@ -26,6 +26,7 @@ public class SearchListController {
     public ModelAndView search(ModelAndView mav, @ModelAttribute("keyword") String keyword){
         List<DbTodo> list = repository.findComment(keyword);
         mav.addObject("data", list);
+        mav.addObject("size", ((List<DbTodo>) list).size());
         return mav;
     }
 }

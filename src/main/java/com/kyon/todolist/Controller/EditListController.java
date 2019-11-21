@@ -26,26 +26,13 @@ public class EditListController {
         return "edit";
     }
 
-    @RequestMapping(value = "/undone", method = RequestMethod.POST)
-    public String undone(@RequestParam("id") Integer id) {
-        DbTodo data = this.repository.getOne(id);
-        data.setState(false);
-        this.repository.save(data);
-        return "forward:/todolist";
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(@RequestParam("id") Integer id) {
-        DbTodo data = this.repository.getOne(id);
-        this.repository.delete(data);
-        return "forward:/todolist";
-    }
-
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public String comment(@RequestParam("id") Integer id, @ModelAttribute("comment") String comment) {
-        DbTodo data = this.repository.getOne(id);
-        data.setComment(comment);
-        this.repository.save(data);
+        if(repository.findExactMatch(comment).size() == 0) {
+            DbTodo data = this.repository.getOne(id);
+            data.setComment(comment);
+            this.repository.save(data);
+        }
         return "forward:/edit";
     }
 

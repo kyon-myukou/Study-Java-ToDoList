@@ -8,15 +8,35 @@
         <div th:replace="header :: header"></div>
         <h2>Search</h2>
         <form method="post" th:action="@{/search}">
-            <input type="text"  name="keyword">
+            <input type="text"  name="keyword" maxlength="30" required>
             <input type="submit" value="Search"/>
+        </form>
+        <h2 th:each="size:${size}" th:if="*{size} eq 0">No Results</h2>
+        <div th:each="size:${size}" th:if="*{size}">
             <table>
+                <tr>
+                    <th>Deadline</th>
+                    <td>Todo</td><td></td><td></td>
+                    <td>CreationDate</td>
+                </tr>
                 <tr th:each="data:${data}" th:if="*{data.state} eq false">
                     <th th:text="*{data.deadlineDt}"></th>
                     <td th:text="*{data.comment}"></td>
+                    <td>
+                        <form method="post" th:action="@{/done}">
+                            <input type="hidden" name="id" th:value="*{data.id}"/>
+                            <input type="submit" value="done" class="done"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{/edit}">
+                            <input type="hidden" name="id" th:value="*{data.id}"/>
+                            <input type="submit" value="edit" class="undone"/>
+                        </form>
+                    </td>
                     <td th:text="*{data.creationDt}"></td>
                 </tr>
             </table>
-        </form>
+        </div>
     </body>
 </html>
