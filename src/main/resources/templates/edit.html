@@ -6,34 +6,27 @@
     </head>
     <body>
         <div th:replace="header :: header"></div>
-        <h1>EditList</h1>
-        <h2>Incomplete</h2>
+        <h2>Edit</h2>
         <table>
-            <tr th:each="data:${data}"  th:if="*{data.state} eq false">
+            <tr th:each="data:${data}">
                 <td th:text="*{data.comment}"></td>
                 <td>
                     <form method="post" th:action="@{/comment}">
                         <input type="hidden" name="id" th:value="*{data.id}"/>
-                        <input type="text"  name="comment">
+                        <input type="text" name="comment" placeholder="todo" maxlength="30" required/>
                         <input type="submit" value="Edit"/>
                     </form>
                 </td>
             </tr>
         </table>
-        <h2>Completed</h2>
         <table>
-            <tr th:each="data:${data}"  th:if="*{data.state} eq true">
-                <td th:text="*{data.comment}"></td>
+            <tr th:each="data:${data}">
+                <td th:text="*{data.deadlineDt}"></td>
                 <td>
-                    <form method="post" th:action="@{/undone}">
+                    <form method="post" th:action="@{/deadlineDt}">
                         <input type="hidden" name="id" th:value="*{data.id}"/>
-                        <input type="submit" value="undone" class="undone"/>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" th:action="@{/delete}">
-                        <input type="hidden" name="id" th:value="*{data.id}"/>
-                        <input type="submit" value="delete" class="done"/>
+                        <input type="date" name="deadlineDt" placeholder="date" required/>
+                        <input type="submit" value="Edit"/>
                     </form>
                 </td>
             </tr>

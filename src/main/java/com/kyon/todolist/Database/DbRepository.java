@@ -8,6 +8,8 @@ import java.util.List;
 
 @Repository
 public interface DbRepository extends JpaRepository<DbTodo, Integer> {
-    @Query("select a from DbTodo a where a.comment like %:keyword% order by a.id asc")
+    @Query("select a from DbTodo a where a.comment like %:keyword% order by a.deadlineDt asc")
     List<DbTodo> findComment(@Param("keyword") String keyword);
+    @Query("select a from DbTodo a where a.comment like :keyword")
+    List<DbTodo> findExactMatch(@Param("keyword") String keyword);
 }

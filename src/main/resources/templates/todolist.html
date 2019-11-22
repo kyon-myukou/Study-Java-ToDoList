@@ -6,21 +6,63 @@
     </head>
     <body>
         <div th:replace="header :: header"></div>
-        <h1>TodoList</h1>
-        <table>
-            <tr th:each="data:${data}" th:if="*{data.state} eq false">
-                <td th:text="*{data.comment}"></td>
-                <td>
-                    <form method="post" th:action="@{/done}">
-                        <input type="hidden" name="id" th:value="*{data.id}"/>
-                        <input type="submit" value="done" class="done"/>
-                    </form>
-                </td>
-            </tr>
-        </table>
         <form method="post" th:action="@{/new}">
-            <input type="text" name="comment"/>
+            <input type="text" name="comment" placeholder="todo" maxlength="30" required/>
+            <input type="date" name="deadlineDt" placeholder="date" required/>
             <input type="submit" value="Add"/>
         </form>
+        <h2 th:each="size:${size}" th:if="*{size} eq 0">No Results</h2>
+        <div th:each="size:${size}" th:if="*{size}">
+            <h2>Incomplete</h2>
+            <table>
+                <tr>
+                    <th>Deadline</th>
+                    <td>Todo</td><td></td><td></td>
+                    <td>CreationDate</td>
+                </tr>
+                <tr th:each="data:${data}" th:if="*{data.state} eq false">
+                    <th th:text="*{data.deadlineDt}"></th>
+                    <td th:text="*{data.comment}"></td>
+                    <td>
+                        <form method="post" th:action="@{/done}">
+                            <input type="hidden" name="id" th:value="*{data.id}"/>
+                            <input type="submit" value="done" class="done"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{/edit}">
+                            <input type="hidden" name="id" th:value="*{data.id}"/>
+                            <input type="submit" value="edit" class="undone"/>
+                        </form>
+                    </td>
+                    <td th:text="*{data.creationDt}"></td>
+                </tr>
+            </table>
+            <h2>Completed</h2>
+            <table>
+                <tr>
+                    <th>Deadline</th>
+                    <td>Todo</td><td></td><td></td>
+                    <td>CreationDate</td>
+                </tr>
+                <tr th:each="data:${data}"  th:if="*{data.state} eq true">
+                    <th th:text="*{data.deadlineDt}"></th>
+                    <td th:text="*{data.comment}"></td>
+                    <td>
+                        <form method="post" th:action="@{/undone}">
+                            <input type="hidden" name="id" th:value="*{data.id}"/>
+                            <input type="submit" value="undone" class="undone"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{/delete}">
+                            <input type="hidden" name="id" th:value="*{data.id}"/>
+                            <input type="submit" value="delete" class="done"/>
+                        </form>
+                    </td>
+                    <td th:text="*{data.creationDt}"></td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>

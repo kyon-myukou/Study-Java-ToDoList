@@ -23,10 +23,10 @@ public class SearchListController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public ModelAndView search(@ModelAttribute("keyword") String keyword){
-        ModelAndView mav = new ModelAndView();
+    public ModelAndView search(ModelAndView mav, @ModelAttribute("keyword") String keyword){
         List<DbTodo> list = repository.findComment(keyword);
         mav.addObject("data", list);
+        mav.addObject("size", ((List<DbTodo>) list).size());
         return mav;
     }
 }
