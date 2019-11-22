@@ -45,9 +45,9 @@
 /java/com/kyon/todolist/Databases 
 * Controller  
 /java/com/kyon/todolist/Controller
-* 静的View 
+* 静的Vie  
 /resources/static
-* 動的View 
+* 動的View  
 /resources/templates
  
 ## 設計
